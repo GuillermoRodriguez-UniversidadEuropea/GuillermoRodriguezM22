@@ -50,6 +50,7 @@ public class Searcher {
                 results.add(element);
             }
         }
+
         return results;
-    }
+    }
 }

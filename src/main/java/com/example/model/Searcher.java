@@ -1,4 +1,4 @@
-package com.example;
+package com.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ public class Searcher {
 
     // checks if the phrase exists in the list
     public boolean searchExactPhrase(String phrase, List<String> list) {
-        if (phrase == null || list == null) {
+        if (phrase == null || list == null || phrase.isEmpty() || list.isEmpty()) {
             return false;
         }
         for (String item : list) {

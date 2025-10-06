@@ -1,9 +1,11 @@
+package Test_Unitarios;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.example.Calculator;
+
+import com.example.model.Calculator;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,5 +82,11 @@ public class CalculatorTestCase {
     @Test
     void testCalculateTotalListaVacia() {
         assertEquals(0.0, calculadora.calculateTotal(Collections.emptyList()));
+    }
+
+    @Test
+    void testSubtract() {
+        int result = Calculator.subtract(4, 5);
+        assertEquals(result, -1);
     }
 }

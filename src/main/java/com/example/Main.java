@@ -1,14 +1,16 @@
 package com.example;
 
-import com.example.model.Calculator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-        Calculator cal = new Calculator();
-        int result = cal.subtract(5, 4);
-        System.out.println(result);
+    public static void main(String[] args) {
+        // Sampre Orders
+        log.info("Starting Order Mangement System . . .");
 
     }
+
 }

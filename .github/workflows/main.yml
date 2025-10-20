@@ -2,7 +2,7 @@ name: Build and Auto-Release (Java Swing Maven)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   build-and-release:

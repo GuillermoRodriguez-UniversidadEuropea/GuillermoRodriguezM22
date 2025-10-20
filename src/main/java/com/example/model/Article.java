@@ -1,7 +1,5 @@
 package com.example.model;
 
-import java.util.List;
-
 public class Article {
 
     private String nombre;
@@ -14,6 +12,9 @@ public class Article {
         this.cantidad = cantidad;
         this.precio = precio;
         this.descuento = descuento;
+    }
+
+    public Article() {
     }
 
     public String getNombre() {
@@ -55,5 +56,4 @@ public class Article {
     public double getDiscountedAmount() {
         return Calculator.applyDiscount(getGrossAmount(), descuento);
     }
-
 }

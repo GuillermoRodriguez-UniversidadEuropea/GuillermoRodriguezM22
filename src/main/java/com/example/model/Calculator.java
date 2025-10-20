@@ -3,23 +3,25 @@ package com.example.model;
 import java.util.List;
 
 public class Calculator {
-    public final static String EMPTY = "empty";
 
-    // Multiply two integers
-    public int multiply(int a, int b) {
-        return a * b;
+    private Calculator() {
+        // Evita instanciación
     }
 
-    // Concatenate two strings
-    public String concat(String a, String b) {
-        if (b != null && a != null) {
-            return a + b;
+    public static final String EMPTY = "empty";
+
+    public static double multiply(int cantidad, double precio) {
+        return cantidad * precio;
+    }
+
+    public static double applyDiscount(double amount, double discountPercent) {
+        if (discountPercent < 0 || discountPercent > 100) {
+            throw new IllegalArgumentException("El porcentaje debe estar entre 0 y 100");
         }
-        return EMPTY;
+        return amount - (amount * discountPercent / 100.0);
     }
 
-    // New: add two values
-    public double sum(double a, double b) {
+    public static double sum(double a, double b) {
         return a + b;
     }
 
@@ -27,29 +29,14 @@ public class Calculator {
         return a - b;
     }
 
-    // New: apply a percentage discount
-    public double discount(double amount, double percent) {
-        if (percent < 0 || percent > 100) {
-            throw new IllegalArgumentException("Percentage must be between 0 and 100");
+    public static String concat(String a, String b) {
+        if (a != null && b != null) {
+            return a + b;
         }
-        return amount - (amount * percent / 100.0);
+        return EMPTY;
     }
 
-    // New: calculate the total of a list of amounts
-    public double calculateTotal(List<Double> amounts) {
+    public static double calculateTotal(List<Double> amounts) {
         return amounts.stream().mapToDouble(Double::doubleValue).sum();
-    }
-
-    public String concat(int i, int j) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'concat'");
-    }
-
-    public static double multiply(int cantidad, double precio) {
-        return cantidad * precio;
-    }
-
-    public static double applyDiscount(double amount, double discount) {
-        return amount - (amount * discount / 100);
     }
 }

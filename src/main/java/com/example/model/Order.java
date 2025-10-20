@@ -12,6 +12,9 @@ public class Order {
         this.articles = articles;
     }
 
+    public Order() {
+    }
+
     public String getId() {
         return id;
     }
@@ -44,8 +47,8 @@ public class Order {
         return total;
     }
 
+    @Override
     public String toString() {
-        return "Order: " + "id= '" + id + '\'' + ", articles = " + articles + ", precio total= " + getGrossTotal() + ", precio total con descuento= " + getDiscountedTotal();
+        return "Order{id='" + id + "', total=" + getGrossTotal() + ", totalConDescuento=" + getDiscountedTotal() + "}";
     }
 }
- 

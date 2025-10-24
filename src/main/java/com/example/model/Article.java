@@ -2,58 +2,70 @@ package com.example.model;
 
 public class Article {
 
-    private String nombre;
-    private int cantidad;
-    private double precio;
-    private double descuento;
-
-    public Article(String nombre, int cantidad, double precio, double descuento) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.descuento = descuento;
-    }
+    private String name;
+    private int quantity;
+    private double unitPrice;
+    private double dicount;
 
     public Article() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public Article(String name, int quantity, double unitPrice, double dicount) {
+        this.name = name;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.dicount = dicount;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+
+    public String getName() {
+        return name;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public int getQuantity() {
+        return quantity
+        ;
     }
 
-    public double getPrecio() {
-        return precio;
+    public void setQuantity(int quantity
+    ) {
+        this.quantity
+         = quantity
+        ;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public double getUnitPrice() {
+        return unitPrice
+        ;
     }
 
-    public double getDescuento() {
-        return descuento;
+    public void setUnitPrice(double unitPrice
+    ) {
+        this.unitPrice
+         = unitPrice
+        ;
     }
 
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
+    public double getDiscount() {
+        return dicount;
+    }
+
+    public void setDiscount(double dicount) {
+        this.dicount = dicount;
     }
 
     public double getGrossAmount() {
-        return Calculator.multiply(cantidad, precio);
+        return Calculator.multiply(quantity
+        , unitPrice
+        );
     }
 
     public double getDiscountedAmount() {
-        return Calculator.applyDiscount(getGrossAmount(), descuento);
+        return Calculator.applyDiscount(getGrossAmount(), dicount);
     }
 }

@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.Controller.OrderController;
+import com.example.View.OrderView;
 import com.example.model.Article;
 import com.example.model.Order;
 
@@ -38,5 +40,10 @@ public class Main {
         }
 
         log.info("All orders cargados: {}", orders.size());
+
+             // Initialize MVC
+            OrderView view = new OrderView();
+            new OrderController(view, orders);
     }
+
 }

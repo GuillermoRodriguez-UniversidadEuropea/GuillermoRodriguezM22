@@ -15,26 +15,37 @@ public class OrderView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        //add new JLabel("Order ID:");
-        //add to view the search field
-        // add to view the search button
-        // add to view the result area inside a JScrollPane
+        setTitle("Order Management");
+
+        add(new JLabel("Order ID:"));
+        add(searchField);
+        add(searchButton);
+        resultArea.setEditable(false);
+        add(new JScrollPane(resultArea));
 
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
     public String getSearchId() {
-        //...
-        return "";
+        return searchField.getText().trim();
     }
 
     public JButton getSearchButton() {
-        //...
-        return null;
+        return searchButton;
     }
 
-    public void displayOrder(Order order, double rate) {
-        //Display order details in resultArea
+    public void displayOrder(Order order) {
+        if (order == null) {
+            resultArea.setText("Order not found...");
+            return;
+        }
+        resultArea.setText(order.toString());
+
+
+
     }
 }
+
+

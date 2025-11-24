@@ -34,11 +34,19 @@ public class OrderController {
     private void searchOrder() {
         String id = view.getSearchId();
 
-                if (id == null || id.isEmpty()) {
+        if (id == null || id.isEmpty()) {
             view.displayOrder(null);
             return;
         }
 
+        Order foundOrder = null;
+        for (Order order : orders) {
+            if (order.getId() != null && order.getId().equalsIgnoreCase(id)) {
+                foundOrder = order;
+                break;
+            }
+        }
 
+        view.displayOrder(foundOrder);
     }
 }

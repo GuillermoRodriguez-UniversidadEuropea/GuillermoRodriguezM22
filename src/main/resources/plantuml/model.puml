@@ -1,0 +1,75 @@
+@startuml Diagrama_de_Clases
+skinparam classAttributeIconSize 0
+
+package Controller {
+    class Main {
+        + main(args : String[]) : void
+    }
+
+    class OrderController {
+        - view : View.OrderView
+        - searcher : model.Searcher
+        - calculator : model.Calculator
+        + OrderController(view : View.OrderView, searcher : model.Searcher, calculator : model.Calculator)
+        + showOrder(orderId : int) : void
+        + createOrder() : void
+        + addArticleToOrder(orderId : int, articleId : int, quantity : int) : void
+    }
+}
+
+package model {
+    class Article {
+        - id : int
+        - name : String
+        - price : double
+        + Article(id : int, name : String, price : double)
+        + getId() : int
+        + getName() : String
+        + getPrice() : double
+    }
+
+    class Order {
+        - id : int
+        - articles : List<Article>
+        - quantities : List<int>
+        + Order(id : int)
+        + addArticle(article : Article, quantity : int) : void
+        + getArticles() : List<Article>
+        + getQuantities() : List<int>
+        + getId() : int
+    }
+
+    class Calculator {
+        + calculateTotal(order : Order) : double
+    }
+
+    class Searcher {
+        - articles : List<Article>
+        - orders : List<Order>
+        + Searcher()
+        + addArticle(article : Article) : void
+        + addOrder(order : Order) : void
+        + findArticleById(id : int) : Article
+        + findOrderById(id : int) : Order
+    }
+}
+
+package View {
+    class OrderView {
+        + showMenu() : void
+        + askOrderId() : int
+        + showOrder(order : model.Order, total : double) : void
+        + showMessage(msg : String) : void
+    }
+}
+
+Controller.Main --> Controller.OrderController
+Controller.OrderController --> View.OrderView
+Controller.OrderController --> model.Searcher
+Controller.OrderController --> model.Calculator
+
+model.Order "1" -- "1..*" model.Article : contiene >
+model.Searcher "1" o-- "0..*" model.Article
+model.Searcher "1" o-- "0..*" model.Order
+
+@enduml

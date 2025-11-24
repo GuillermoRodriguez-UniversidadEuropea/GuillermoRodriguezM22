@@ -1,0 +1,21 @@
+@startuml Casos_de_Uso
+left to right direction
+
+actor "User" as User
+
+usecase "Crear order" as UC1
+
+usecase "Añadir article a order" as UC2
+usecase "Buscar article" as UC3
+usecase "Ver order" as UC4
+usecase "Calcular order total" as UC5
+
+User -- UC1
+User -- UC2
+User -- UC3
+User -- UC4
+User -- UC5
+
+UC4 <.. UC5 : <<include>>
+
+@enduml

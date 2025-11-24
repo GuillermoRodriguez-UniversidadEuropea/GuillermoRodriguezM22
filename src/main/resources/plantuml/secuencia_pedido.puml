@@ -1,0 +1,25 @@
+@startuml Secuencia_de_Pedido
+actor Usuario
+boundary "OrderView" as V
+control "OrderController" as C
+entity "Searcher" as S
+entity "Calculator" as Calc
+entity "Order" as O
+
+Usuario -> V : seleccionar la opcion "View order"
+V -> C : showOrder()
+C -> V : askOrderId()
+V --> Usuario : solicitar identificador del pedido
+Usuario --> V : introducir idOrder
+V -> C : showOrder(idOrder)
+
+C -> S : findOrderById(idOrder)
+S --> C : order : Order
+
+C -> Calc : calculateTotal(order)
+Calc --> C : total : double
+
+C -> V : showOrder(order, total)
+V --> Usuario : mostrar los datos del pedido y el total calculado
+
+@enduml

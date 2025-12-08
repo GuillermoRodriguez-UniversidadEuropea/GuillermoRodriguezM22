@@ -11,11 +11,8 @@ public class OrderView extends JFrame {
 
     public OrderView() {
         setTitle("Order Management");
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
-        setTitle("Order Management");
 
         add(new JLabel("Order ID:"));
         add(searchField);
@@ -42,10 +39,23 @@ public class OrderView extends JFrame {
             return;
         }
         resultArea.setText(order.toString());
+    }
 
+    public void displayOrder(Order order, double tipoCambio) {
+        if (order == null) {
+            resultArea.setText("Order not found...");
+            return;
+        }
 
+        double totalEur = order.getGrossTotal();
+        double totalUsd = totalEur * tipoCambio;
 
+        StringBuilder sb = new StringBuilder();
+        sb.append(order.toString()).append("\n\n");
+        sb.append("Total EUR: ").append(String.format("%.2f €", totalEur)).append("\n");
+        sb.append("Total USD: ").append(String.format("%.2f $", totalUsd)).append("\n");
+        sb.append("1 EUR = ").append(String.format("%.4f USD", tipoCambio));
+
+        resultArea.setText(sb.toString());
     }
 }
-
-

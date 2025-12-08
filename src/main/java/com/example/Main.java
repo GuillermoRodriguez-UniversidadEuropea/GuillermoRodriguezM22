@@ -3,6 +3,7 @@ package com.example;
 import com.example.Controller.OrderController;
 import com.example.View.OrderView;
 import com.example.model.Order;
+import com.example.model.Intercambio;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -20,7 +21,6 @@ public class Main {
         System.out.println("Iniciando sistema de gestion de pedidos...");
         System.out.println();
 
-        // Aqui creamos la lista de pedidos (de momento vacia)
         log.info("Starting Order Management System...");
         System.out.println();
 
@@ -31,7 +31,10 @@ public class Main {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Order> orders = mapper.readValue( file, mapper.getTypeFactory().constructCollectionType(List.class, Order.class));
+        List<Order> orders = mapper.readValue(
+                file,
+                mapper.getTypeFactory().constructCollectionType(List.class, Order.class)
+        );
 
         for (Order order : orders) {
             log.debug("Loaded order: {}", order.getId());
@@ -39,9 +42,10 @@ public class Main {
 
         log.info("All orders cargados: {}", orders.size());
 
-        // Inicializamos la vista y el controlador
         OrderView view = new OrderView();
-        new OrderController(view, orders);
+        Intercambio intercambio = new Intercambio();
+        new OrderController(view, orders, intercambio);
+
 
         System.out.println("Aplicacion iniciada correctamente.");
     }

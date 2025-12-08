@@ -1,4 +1,4 @@
-# Proyecto Java Maven - [Nombre del Proyecto]
+# Proyecto Java Maven - Sistema de gestion de pedidos
 
 Este proyecto es una plantilla base para comenzar a trabajar con aplicaciones Java
 utilizando Maven. Asegúrate de seguir las instrucciones para configurar tu entorno
@@ -11,6 +11,8 @@ correctamente y entender cómo contribuir al proyecto.
 - [Configuración del Entorno](#configuración-del-entorno)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Compilación y Ejecución](#compilación-y-ejecución)
+- [Conversión de EUR a USD](#conversión-de-EUR-a-USD)
+- [Dónde se aplica el intercambio](#dónde-se-aplica-el-intercambio)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
 
@@ -64,16 +66,43 @@ Maven for Java
 ## Estructura del proyecto
 
 ```plaintext
-[NombreDelProyecto]/
+GuillermoRodríguez-UniversidadEuropea/GuillermoRodríguezM22
 ├── src/
-│ └── main/
-│ └── java/
-│ └── com/
-│ └── ejemplo/
-│ └── App.java
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           ├── Controller/
+│   │   │           │   └── OrderController.java
+│   │   │           ├── model/
+│   │   │           │   ├── Order.java
+│   │   │           │   ├── Article.java
+│   │   │           │   ├── Calculator.java
+│   │   │           │   ├── Searcher.java
+│   │   │           │   └── ExchangeRate.java
+│   │   │           |── View/
+│   │   │           |    └── OrderView.java
+|   |   |           ├── Main.java
+│   │   └── resources/
+|   |       ├── plantuml
+│   │       │      ├── casos_uso.puml
+│   │       │      ├── model.puml
+│   │       │      └── secuencia_pedido.puml
+│   │       ├── orders.json
+│   │       ├── app.png
+│   │       └── logback.xml
+│   └── test/
+|       ├── Test_Model
+│       |       ├── ArticleTest.java
+│       |       └── OrderTest.java
+|       └── Test_Unitarios
+│               ├── CalculatorTestCase.java
+│               └── SearcherTestCase.java
 ├── pom.xml
+├── .gitignore
 ├── target/
 └── README.md
+
 ```
 
 ## Compilación y ejecución
@@ -92,6 +121,25 @@ Para ejecutar la aplicación, usa el siguiente comando:
 mvn exec:java
 ```
 
+
+## Conversión de EUR a USD
+
+En esta versión he añadido que el programa pueda mostrar el total del pedido en euros y también en dólares.
+
+Para hacer el Intercambio:
+
+He creado una clase llamada Intercambio (en model) que:
+Llama a una página web que devuelve el cambio de euro a dólar.
+Lee ese número y lo devuelve con un método: public double obtenerEurUsd()
+
+https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD
+
+## Dónde se aplica el intercambio
+
+En OrderController, cuando encuentro un pedido: saco el total en euros (getGrossTotal()), llamo a intercambio.obtenerEurUsd(), calculo el total en dólares y se lo mando a la vista.
+
+En OrderView, he añadido un método displayOrder(order, tipoCambio) que: muestra el pedido, el total en EUR, el total en USD y el cambio usado (1 EUR = X USD).
+
 ## Contribución
 
 Si deseas contribuir a este proyecto, por favor sigue estos pasos:
@@ -106,27 +154,3 @@ Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más
 detalles.
-
-## Token
-
-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Java Extension Pack (de Microsoft)
-Maven for Java
-
-## Estructura del proyecto
-
-```plaintext
-[NombreDelProyecto]/
-├── src/
-│ └── main/
-│ └── java/
-│ └── com/
-│ └── ejemplo/
-│ └── App.java
-├── pom.xml
-├── target/
-└── README.md
-```
-
-## Compilación y ejecución
-
-Para compilar y ejecutar el proyecto, sigue estos pasos:
